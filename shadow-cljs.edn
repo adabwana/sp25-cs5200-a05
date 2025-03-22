@@ -4,7 +4,7 @@
 ;;                 [cider/cider-nrepl "0.28.5"]]
  :builds {:app {:target :browser
                 :output-dir "public/js"
-                :asset-path "/js"
+                :asset-path "js"
                 :modules {:main {:init-fn tictactoe.web/init!}}
                 :devtools {:after-load tictactoe.web/mount-root
                            :http-root "public"
