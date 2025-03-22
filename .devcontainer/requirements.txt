@@ -1,0 +1,8 @@
+pathspec
+
+numpy
+pandas
+
+pygame
+
+ipykernel

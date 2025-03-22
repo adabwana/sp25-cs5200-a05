@@ -1,0 +1,12 @@
+{:deps {:alias [:dev]}
+;;  :source-paths ["src"]
+;;  :dependencies [[reagent "1.3.0"]
+;;                 [cider/cider-nrepl "0.28.5"]]
+ :builds {:app {:target :browser
+                :output-dir "public/js"
+                :asset-path "/js"
+                :modules {:main {:init-fn tictactoe.web/init!}}
+                :devtools {:after-load tictactoe.web/mount-root
+                           :http-root "public"
+                           :http-port 1992}
+                :dev {:compiler-options {:closure-defines {reagent.dom/global-force-rerender true}}}}}}

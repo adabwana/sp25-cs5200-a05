@@ -1,0 +1,48 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    
+    - name: Setup Clojure tools
+      uses: DeLaGuardo/setup-clojure@master
+      with:
+        cli: latest
+        
+    - name: Create public directory and copy static assets
+      run: |
+        mkdir -p public/js
+        cp resources/public/index.html public/
+        
+    - name: Build ClojureScript
+      run: |
+        npm install shadow-cljs -g
+        npm install
+        npx shadow-cljs release app
+      
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: public
+        branch: gh-pages 

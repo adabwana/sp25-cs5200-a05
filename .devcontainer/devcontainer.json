@@ -1,0 +1,74 @@
+{
+    "name": "cs5200 a05 minmax",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "betterthantomorrow.calva",
+                "streetsidesoftware.code-spell-checker",
+                "shaunlebron.vscode-parinfer",
+                "ms-python.black-formatter",
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.formatting.provider": "black",
+                "editor.formatOnSave": true,
+                "python.formatting.blackArgs": [
+                    "--line-length",
+                    "88"
+                ],
+                // terminal settings
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.profiles.linux": {
+                    "bash": {
+                        "path": "/bin/bash"
+                    }
+                },
+                // "editor.formatOnSave": true,
+                "calva.evalOnSave": false,
+                "files.autoSave": "afterDelay"
+            }
+        }
+    },
+    // "features": {
+    //     "ghcr.io/devcontainers/features/common-utils:2": {
+    //         "installZsh": true,
+    //         "configureZshAsDefaultShell": true,
+    //         "installOhMyZsh": true
+    //     },
+    //     "ghcr.io/devcontainers/features/nvidia-cuda:1": {
+    //         "installToolkit": true,
+    //         "cudaVersion": "12.3",
+    //         "installCudnn": false,
+    //     }
+    // },
+    // Forward ports
+    "forwardPorts": [],
+    // User configuration
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true,
+    // Allow GPU
+    "hostRequirements": {
+        "gpu": "optional"
+    },
+    "runArgs": [
+        "--gpus=all",
+        "-e",
+        "DISPLAY=${localEnv:DISPLAY}",
+        "-v",
+        "/tmp/.X11-unix:/tmp/.X11-unix",
+        "-v",
+        "${localEnv:HOME}/.Xauthority:/home/vscode/.Xauthority"
+    ],
+    // Container runtime arguments
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "initializeCommand": "xhost +local:*",
+    // pre-installs all clojure dependencies
+    "postCreateCommand": "clojure -P"
+}

@@ -1,0 +1,200 @@
+1. Test Organization:
+   ```clojure
+   ;; ✓ Feature-focused describes with clear contexts
+   (describe "Victory conditions"
+     (context "Standard patterns"
+       (it "should detect horizontal wins")
+       (it "should detect vertical wins"))
+     (context "Extended patterns"
+       (it "should detect longer sequences")))
+
+   ;; ✗ Avoid generic/vague groupings
+   (describe "Generic Operations"
+     (it "should initialize"))
+   ```
+
+2. Test Structure:
+   ```clojure
+   ;; Clear setup and assertions
+   (it "should detect wins"
+       (let [board [[\X \X \X]
+                    [\O \O \space]
+                    [\space \space \space]]]
+         ;; Test both positive and negative cases
+         (should (board/check-winner board \X 3))
+         (should-not (board/check-winner board \O 3))))
+
+   ;; Use threading for complex setup
+   (let [board (-> (board/init-board 9)
+                  (board/place-mark 2 2 \X)
+                  (board/place-mark 3 3 \X))]
+     (should (board/check-winner board \X 3)))
+   ```
+
+3. Test Coverage:
+   - Basic functionality first
+   - Edge cases and validation
+   - Complex scenarios last
+   - Both success and failure cases
+   - Boundary conditions
+
+4. Pending Tests:
+   ```clojure
+   ;; Mark unimplemented features
+   (xit "future feature"
+     (pending "Not implemented yet"))
+
+   ;; Document in-progress work
+   (it "current feature"
+     (pending "Implementation in progress"))
+   ```
+
+5. Best Practices:
+   - One behavior per test
+   - Consistent naming across suite
+   - Clear test data setup
+   - Independent tests
+   - Descriptive failure messages
+   - Group related assertions
+
+6. Test Progression:
+   ```clojure
+   (describe "Feature implementation"
+     ;; Core functionality
+     (context "✓ Basic operations"
+       (it "should create board"))
+     
+     ;; Edge cases
+     (context "⚠ Validation"
+       (xit "should handle invalid moves"))
+     
+     ;; Complex features
+     (context "❌ Advanced features"
+       (xit "should handle special cases")))
+   ```
+
+7. Test Naming Conventions:
+   ```clojure
+   ;; Test descriptions should be specific and behavior-focused
+   (it "should validate moves within board boundaries")  ;; ✓ Clear what's being tested
+   (it "should check moves")  ;; ✗ Too vague
+   
+   ;; Use consistent terminology across related tests
+   (describe "Move mechanics"  ;; Parent concept
+     (context "Move validation"  ;; Related group
+       (it "should validate moves within board boundaries")
+       (it "should only allow moves on empty cells")))
+   ```
+
+8. Test Data Organization:
+   ```clojure
+   ;; Group test setup logically with assertions
+   (it "should detect horizontal wins"
+       (let [board [[\X \X \X]
+                    [\O \O \space]
+                    [\space \space \space]]]  ;; Clear test state
+         (should (board/check-winner board \X 3))
+         (should-not (board/check-winner board \O 3))))  ;; Related assertions
+
+   ;; Use threading macro for complex setup
+   (it "should detect wins with longer sequences"
+       (let [board (-> (board/init-board 9)  ;; Clear setup steps
+                      (board/place-mark 2 2 \X)
+                      (board/place-mark 3 3 \X)
+                      (board/place-mark 4 4 \X))]
+         (should (board/check-winner board \X 3))))
+   ```
+
+9. Test Documentation:
+   ```clojure
+   (describe "Game mechanics"
+     ;; Document test group purpose
+     (context "Move validation"  ;; Ensures moves are legal and valid
+       ;; Document specific test cases
+       (it "should validate moves within board boundaries"  ;; Checks board bounds
+           (let [board (board/init-board 3)]
+             ;; Document expected behavior
+             ;; Valid moves: 0,0 to 2,2
+             ;; Invalid moves: negative or >= 3
+             (should (board/valid-move? board 0 0))))))
+   ```
+
+10. Test Maintenance Guidelines:
+   - Keep tests focused on single behaviors
+   - Use consistent naming across test suite
+   - Group related tests logically
+   - Test both success and failure cases
+   - Include boundary condition tests
+   - Use clear, descriptive test data
+   - Maintain test independence
+
+11. Test Status Tracking:
+   ```clojure
+   (describe "Component Implementation"
+     ;; Status indicators in contexts
+     (context "✓ completed features"
+       (it "should work" ...))
+     
+     (context "⚠ in progress"
+       (it "current feature"
+         (pending "Implementing..."))
+       (xit "next feature"))
+     
+     (context "❌ not started"
+       (xit "future feature 1")
+       (xit "future feature 2")))
+   ```
+
+12. Prioritization Pattern:
+   ```clojure
+   (describe "RNN Implementation"
+     ;; 1. Core Operations (Implement First)
+     (context "essential operations"
+       (it "forward step computation"...)
+       (it "basic gradient calculation"...))
+     
+     ;; 2. Enhanced Features (Implement Next)
+     (context "advanced features"
+       (xit "batch processing"...)
+       (xit "sequence handling"...))
+     
+     ;; 3. Optimizations (Implement Last)
+     (context "optimizations"
+       (xit "GPU acceleration"...)
+       (xit "parallel processing"...)))
+   ```
+
+13. Debug-Driven Test Implementation:
+   ```clojure
+   (it "gradient computation"
+     (if (not implemented?)
+       (do
+         (debug "Current implementation status:")
+         (debug "- Forward pass: complete")
+         (debug "- Gradient calculation: in progress")
+         (debug "- Weight updates: pending")
+         (pending "Implementing gradient computation"))
+       (actual-test)))
+   ```
+
+14. Test-Debug-Fix Cycle:
+   a. Run Initial Test:
+      ```bash
+      clojure -M:test spec/path/to/test_spec.clj
+      ```
+
+Benefits of Pending Tests:
+1. Clear development roadmap
+2. Documentation of intended functionality
+3. Progress tracking
+4. Prevents test rot
+5. Maintains focus on current task
+6. Helps with estimation
+
+Best Practices for Pending Tests:
+1. Always include expected behavior documentation
+2. Keep pending test count visible
+3. Regularly review and update pending status
+4. Use pending tests for feature planning
+5. Include expected implementation timeline
+6. Document dependencies between tests

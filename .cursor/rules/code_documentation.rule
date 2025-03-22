@@ -1,0 +1,140 @@
+1. Core Documentation Principles:
+   ```markdown
+   > Professional Authority:
+   - Present precise, technical explanations with **bold** key concepts
+   - Support implementation choices with *italicized* algorithmic principles
+   - Use `backticks` for function names and technical parameters
+   - Express measured confidence about strategic decisions
+   - Maintain objective tone while acknowledging trade-offs
+
+   > Algorithm-Code Integration:
+   - Begin each major section with a clear "## Section Title"
+   - Present theoretical foundations before implementation details
+   - Connect mathematical concepts directly to code implementation
+   - Use markdown formatting consistently for emphasis:
+     * **Bold** for critical concepts and features
+     * *Italics* for algorithmic terms and processes
+     * `Backticks` for function names and parameters
+   ```
+
+2. Documentation Structure:
+   ```markdown
+   > Module Overview:
+   - Start with a "# Module Title" introducing the purpose
+   - Provide immediate context with key features in **bold**
+   - Highlight core algorithms in *italics*
+   - State specific constraints and requirements clearly
+
+   > Section Organization:
+   - Use "## Section Title" for major components
+   - Place documentation immediately before related code
+   - Maintain consistent section ordering:
+     1. Theoretical foundation
+     2. Implementation approach
+     3. Technical details
+     4. Performance considerations
+   ```
+
+3. Narrative Style:
+   ```markdown
+   > Documentation Flow:
+   - Write in clear, expository paragraphs
+   - Use technical precision without losing readability
+   - Connect sections with natural progression
+   - Maintain consistent voice throughout
+   - Integrate mathematical notation when relevant:
+     $algorithm(params) = \begin{cases}
+     base\_case & \text{if condition} \\
+     recursive\_case & \text{otherwise}
+     \end{cases}$
+
+   > Code Context:
+   - Document each major function's role in the larger system
+   - Explain strategic decisions and trade-offs
+   - Connect implementation details to theoretical foundations
+   - Use consistent terminology across sections
+   ```
+
+4. Implementation Documentation:
+   ```clojure
+   ;; ## Strategic Component
+   ;;
+   ;; This section implements a **key feature** using the *core algorithm*.
+   ;; The implementation balances theoretical requirements with practical
+   ;; constraints, using the `function-name` to process inputs.
+   
+   (defn strategic-function
+     "Docstring explaining core functionality"
+     [params]
+     ;; Implementation with clear connection to documentation
+     (let [result (process params)]
+       result))
+
+   ;; ### Performance Analysis
+   ;;
+   ;; Time complexity: O(n) for normal cases
+   ;; Space complexity: O(1) constant space
+   ```
+
+5. Best Practices:
+   ```markdown
+   > Documentation Integration:
+   - Place high-level documentation at the module start, right after namespace declaration
+   - Document each major section before implementation
+   - Use consistent formatting patterns throughout
+   - Maintain clear connection between theory and code
+
+   > Code Clarity:
+   - Document strategic decisions, not obvious operations
+   - Explain complex algorithms with mathematical notation
+   - Use formatting to highlight important concepts
+   - Keep documentation close to relevant code
+   ```
+
+6. Common Patterns:
+   ```markdown
+   > Section Structure:
+   - "# Module Title" for file overview
+   - "## Component Name" for major sections
+   - "### Subsection" for detailed components
+   - Documentation before implementation
+   - Performance notes after implementation
+
+   > Formatting Consistency:
+   - **Bold** for key features and concepts
+   - *Italics* for algorithmic terms
+   - `Backticks` for code elements
+   - Mathematical notation for algorithms
+   - Clear paragraph structure for explanation
+   ```
+
+7. Documentation Checklist:
+   ```markdown
+   [ ] Module overview with clear purpose
+   [ ] Theoretical foundations explained
+   [ ] Major sections properly titled
+   [ ] Consistent markdown formatting
+   [ ] Mathematical notation where appropriate
+   [ ] Implementation details connected to theory
+   [ ] Performance characteristics documented
+   [ ] Clear narrative flow throughout
+   [ ] Function roles in system explained
+   [ ] Strategic decisions documented
+   ```
+
+Benefits of This Style:
+1. Clear visual hierarchy through consistent formatting
+2. Natural flow from theory to implementation
+3. Easy navigation with clear section titles
+4. Immediate context for code components
+5. Professional and authoritative presentation
+6. Maintainable and educational documentation
+
+Best Practices:
+1. Always document strategic decisions
+2. Use consistent markdown formatting
+3. Keep documentation close to code
+4. Explain complex algorithms clearly
+5. Connect theory to implementation
+6. Document performance characteristics
+7. Maintain narrative flow throughout 

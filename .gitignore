@@ -1,0 +1,23 @@
+# Defaults
+.*
+!.devcontainer
+!.gitignore
+!.cursor
+prompts/
+docs/
+
+# Dependencies
+node_modules/
+target/
+
+# Keep GitHub specific files
+!.github/
+!.gitignore
+
+# Keep public directory for GitHub Pages
+public/
+!resources/public/
+# !public/
+# !public/**/*
+
+# spec/
