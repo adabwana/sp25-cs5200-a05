@@ -30,16 +30,26 @@ jobs:
       with:
         cli: latest
         
-    - name: Create public directory and copy static assets
+    - name: Create public directory
       run: |
-        mkdir -p public/js
-        cp resources/public/index.html public/
+        mkdir -p public
         
     - name: Build ClojureScript
       run: |
         npm install shadow-cljs -g
         npm install
-        npx shadow-cljs release app
+        npx shadow-cljs release app --verbose
+        
+    - name: Copy static assets
+      run: |
+        cp -r resources/public/* public/ || true
+        
+    - name: List contents for debugging
+      run: |
+        echo "Contents of public/js:"
+        ls -la public/js/
+        echo "Contents of public/js/cljs-runtime (if exists):"
+        ls -la public/js/cljs-runtime/ || true
       
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
