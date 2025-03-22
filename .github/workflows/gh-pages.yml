@@ -34,13 +34,10 @@ jobs:
       run: |
         mkdir -p public
         
-    # - name: Build ClojureScript
-    - name: Build ClojureScript (watch and release for development)
+    - name: Build ClojureScript (watch and compile vs release)
       run: |
         npm install shadow-cljs -g
         npm install
-       # npx shadow-cljs watch app --verbose
-       # npx shadow-cljs compile app --verbose
         npx shadow-cljs release app --verbose
         
     - name: Copy static assets
