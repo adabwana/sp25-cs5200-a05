@@ -2,7 +2,7 @@
   (:require
    [scicloj.kindly.v4.kind :as kind]
    [scicloj.kindly.v4.api :as kindly]
-   [web :as ttt-web]))
+   [tictactoe.web :as ttt-web]))
 
 ;; # Tic Tac Toe with AI
 ;; 

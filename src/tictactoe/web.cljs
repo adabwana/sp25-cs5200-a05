@@ -1,4 +1,4 @@
-(ns web
+(ns tictactoe.web
   (:require
    [reagent.core :as r]
    [reagent.dom :as rdom]
