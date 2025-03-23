@@ -16,11 +16,13 @@
     (println "\nBenchmarking player move:")
     (crit/quick-bench (core/make-move state 4 4)))
 
-(let [state (-> (core/init-game)
-                (assoc-in [:config :ai-enabled] true)
-                (assoc :current-player \O))]
-  (println "\nBenchmarking AI move processing:")
-  (crit/quick-bench (core/process-ai-move state)))
+(println "\nBenchmarking AI move processing across board sizes:")
+(doseq [size (range 3 10)]
+  (let [state (-> (core/init-game {:board-size size})
+                  (assoc-in [:config :ai-enabled] true)
+                  (assoc :current-player \O))]
+    (println (format "\nBoard size: %dx%d" size size))
+    (crit/quick-bench (core/process-ai-move state))))
 
 #_(let [state (-> (core/init-game {:board-size 3 :win-length 3})
                   (core/make-move 0 0)
