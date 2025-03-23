@@ -1,7 +1,37 @@
 (ns tictactoe.cljs.board-spec
   (:require
+   [criterium.core :as crit]
    [speclj.core :refer :all]
    [tictactoe.cljs.board :as board]))
+
+;; Performance Benchmarks
+(println "\n=== Board Operations Benchmarks ===")
+
+(println "\nBenchmarking board initialization (9x9):")
+(crit/quick-bench (board/init-board 9))
+
+(let [board (board/init-board 9)]
+  (println "\nBenchmarking move validation:")
+  (crit/quick-bench (board/valid-move? board 4 4)))
+
+(let [board (board/init-board 9)]
+  (println "\nBenchmarking mark placement:")
+  (crit/quick-bench (board/place-mark board 4 4 \X)))
+
+(let [board (-> (board/init-board 9)
+                (board/place-mark 2 2 \X)
+                (board/place-mark 3 3 \X)
+                (board/place-mark 4 4 \X)
+                (board/place-mark 5 5 \X)
+                (board/place-mark 6 6 \X))]
+  (println "\nBenchmarking win detection (5-in-a-row):")
+  (crit/quick-bench (board/check-winner board \X 5)))
+
+(let [board [[\X \O \X]
+             [\X \O \O]
+             [\O \X \X]]]
+  (println "\nBenchmarking board-full? check:")
+  (crit/quick-bench (board/board-full? board)))
 
 (describe "Board creation"
           (it "should create an empty board of specified size"
